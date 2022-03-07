@@ -1,20 +1,26 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { ReferralTable } from '../../components/ReferralTable';
+import { create, fetchAll, update, remove } from '../../features/referals';
+import { RootState } from '../../store';
 import { Referral } from '../../types/referral';
 import style from './ReferralList.module.css';
 
 const ReferralList: React.FC = () => {
-  const [referrals, setReferrals] = useState<Referral[]>([]);
+  const dispatch = useDispatch();
+  const referrals = useSelector((state: RootState) => state.referrals.data);
 
   useEffect(() => {
-    fetch('http://localhost:3333/referrals')
-      .then((r) => r.json())
-      .then(setReferrals);
+    dispatch(fetchAll());
   }, []);
+
+  const handleCreate = (data: Referral) => dispatch(create(data));
+  const handleUpdate = (data: Referral) => dispatch(update(data));
+  const handleDelete = (id: number) => dispatch(remove(id));
 
   return (
     <div className={style.frame}>
-      <ReferralTable referrals={referrals} />
+      <ReferralTable referrals={referrals} onCreate={handleCreate} onUpdate={handleUpdate} onDelete={handleDelete} />
     </div>
   );
 };

@@ -28,8 +28,8 @@ This project was generated using [Nx](https://nx.dev).
 
 ### Prerequisites
 
-* [NodeJS](https://nodejs.org/en/), latest LTS version recommended
-* [Yarn](https://classic.yarnpkg.com/lang/en/) package manager, version 1.22.x or newer
+- [NodeJS](https://nodejs.org/en/), latest LTS version recommended
+- [Yarn](https://classic.yarnpkg.com/lang/en/) package manager, version 1.22.x or newer
 
 Tip: a nice way to install and manage various versions of NodeJS on your development machine
 is [NVM](https://github.com/nvm-sh/nvm#installing-and-updating).
@@ -102,53 +102,64 @@ extend the app with some features.
 
 Your job is to extend the app accordingly and make sure that the code base stays extendable and maintainable.
 
-* Feel free to use any additional tools or libraries where you think it is appropriate.
-* The existing code surely is not perfect, feel free to refactor things where it makes sense.
-* Make sure that you follow best practices while extending the REST API and the webapp (e.g. code structure, SOLID
+- Feel free to use any additional tools or libraries where you think it is appropriate.
+- The existing code surely is not perfect, feel free to refactor things where it makes sense.
+- Make sure that you follow best practices while extending the REST API and the webapp (e.g. code structure, SOLID
   principles etc.).
-* Try to keep the user experience in mind while implementing new features. If requirements are unclear, feel free to
+- Try to keep the user experience in mind while implementing new features. If requirements are unclear, feel free to
   decide what is best for the user.
-* Add implementation notes and comments at the end of this README.
+- Add implementation notes and comments at the end of this README.
 
 ### Task 1: Update and delete referrals
 
 The team needs to be able to update and delete existing referral entries. We already have action buttons in the UI that
 are not functional yet, let's implement them.
 
-* The update and delete functionality for the buttons in each referral row should be implemented.
-* When clicking on the Delete icon, the user should be prompted with a confirmation dialog and only confirming it should
+- The update and delete functionality for the buttons in each referral row should be implemented.
+- When clicking on the Delete icon, the user should be prompted with a confirmation dialog and only confirming it should
   delete records.
-* To update a referral, a modal box should be used with prefilled form fields.
+- To update a referral, a modal box should be used with prefilled form fields.
   Hint: [Material UI - Modal](https://material-ui.com/components/modal/)
-* The entries should be updated or deleted in the database accordingly via the API.
+- The entries should be updated or deleted in the database accordingly via the API.
 
 ### Task 2: Create new referral entries
 
 Users of the app want to be able to create new referrals using a form. The dev team came up with the following
 requirements:
 
-* A `Create new` button should be added below the existing referral list.
-* The button opens a modal box with a form including all relevant fields to create a new referral entry.
-* At the bottom of the modal box there should be 2 buttons: `Cancel` and `Create`.
-* A new entry should be created via the API when the form is filled correctly and the `Create` button is clicked.
+- A `Create new` button should be added below the existing referral list.
+- The button opens a modal box with a form including all relevant fields to create a new referral entry.
+- At the bottom of the modal box there should be 2 buttons: `Cancel` and `Create`.
+- A new entry should be created via the API when the form is filled correctly and the `Create` button is clicked.
 
 ### Task 3: Address
 
 In order to get a better picture of where referrals are located we want to start capturing their addresses. We came up
 with the following requirements for the webapp:
 
-* The optional fields `addressLine`, `suburb`, `state`, `postCode` and `country` are already present in the database
+- The optional fields `addressLine`, `suburb`, `state`, `postCode` and `country` are already present in the database
   schema in the backend REST API, we just need to provide a nice UI to capture addresses and send those fields when
   creating or updating referrals.
-* All address fields are now mandatory in the frontend and creating or updating entries should require all fields to be
+- All address fields are now mandatory in the frontend and creating or updating entries should require all fields to be
   present.
-* The product team didn't come up with details around the input form for addresses, but mentioned that it should be easy
+- The product team didn't come up with details around the input form for addresses, but mentioned that it should be easy
   to fill out and ideally work with some autocomplete functionality.
-* The address fields should be saved when creating and updating referral entries.
+- The address fields should be saved when creating and updating referral entries.
 
 ## Implementation Notes
 
-Please add notes here. Also feel free to add any further thoughts on your implementation decisions and potential
-improvement ideas.
+As the time constrain of this demo (2-3 hours), I've left some note for future implementation to make this project production ready
+
+### API
+
+- Create new api `deleteReferralById`, `updateReferralById`, `createReferral`
+- Future improvements: implement global error handling using middleware, handle validation, logs
+
+### Webapp
+
+- Use `Redux Toolkit` for state management.
+- Use `React Hook Form` for form management.
+- Build new generic components `Confirmation`, `Modal` and composition components `ReferralDeleteConfirmation`, `ReferralModal` for delete, create and update referrals
+- Future improvement: integration test for all components and features. Enhance material looks (I'm not familiar with it tbh :)). Implement auto complete for address. We could use `react-places-autocomplete` package for autocomplete address input which consume google api. Users either use it to find their address, and it'll auto populate to address fields, or manually fill them.
 
 Happy Coding 🧑‍💻

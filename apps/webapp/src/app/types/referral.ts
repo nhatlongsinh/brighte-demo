@@ -4,4 +4,12 @@ export interface Referral {
   surName: string;
   email: string;
   phone: string;
+  addressLine: string;
+  suburb: string;
+  state: string;
+  postCode: string;
+  country: string;
+}
+export interface ReferralState {
+  data: Referral[];
 }

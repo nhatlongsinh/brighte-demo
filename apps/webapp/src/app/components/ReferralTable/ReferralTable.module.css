@@ -3,15 +3,15 @@
   border-radius: 8px;
   padding: 20px 30px 80px 30px;
   box-sizing: border-box;
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
 .tableHeadCell {
-    /* Override material UI style with important */
-    color: #868383 !important;
-    font-weight: 900 !important;
-    padding-left: 0 !important;
+  /* Override material UI style with important */
+  color: #868383 !important;
+  font-weight: 900 !important;
+  padding-left: 0 !important;
 }
 
 .tableBodyCell {
